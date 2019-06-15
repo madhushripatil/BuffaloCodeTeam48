@@ -6,3 +6,7 @@ npm-debug\.log
 *.log
 
 graphql-server-example/node_modules/*
+
+ApolloGQLClient/\.idea/
+
+\.idea/codeStyles/
