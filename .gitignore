@@ -10,3 +10,7 @@ graphql-server-example/node_modules/*
 ApolloGQLClient/\.idea/
 
 \.idea/codeStyles/
+
+Server/node_modules/*
+
+Server/package-lock\.json
