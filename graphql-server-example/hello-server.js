@@ -24,4 +24,5 @@ server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`)
 });
 
+
 // https://www.apollographql.com/docs/apollo-server/essentials/server/

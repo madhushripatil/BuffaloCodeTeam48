@@ -1,34 +1,34 @@
 import graphene
 import os
 
-from graphene import ObjectType, String, Schema
+# from graphene import ObjectType, String, Schema
 
-class Query(ObjectType):
-    # this defines a Field `hello` in our Schema with a single Argument `name`
-    hello = String(name=String(default_value="stranger"))
-    goodbye = String()
+# class Query(ObjectType):
+#     # this defines a Field `hello` in our Schema with a single Argument `name`
+#     hello = String(name=String(default_value="stranger"))
+#     goodbye = String()
 
-    # our Resolver method takes the GraphQL context (root, info) as well as
-    # Argument (name) for the Field and returns data for the query Response
-    def resolve_hello(root, info, name):
-        return f'Hello {name}!'
+#     # our Resolver method takes the GraphQL context (root, info) as well as
+#     # Argument (name) for the Field and returns data for the query Response
+#     def resolve_hello(root, info, name):
+#         return f'Hello {name}!'
 
-    def resolve_goodbye(root, info):
-        return 'See ya!'
+#     def resolve_goodbye(root, info):
+#         return 'See ya!'
 
-schema = Schema(query=Query)
+# schema = Schema(query=Query)
 
 
 
-class Query(graphene.ObjectType):
-  hello = graphene.String(name=graphene.String(default_value="World"))
+# class Query(graphene.ObjectType):
+#   hello = graphene.String(name=graphene.String(default_value="World"))
 
-  def resolve_hello(self, info, name):
-    return 'Hello ' + name
+#   def resolve_hello(self, info, name):
+#     return 'Hello ' + name
 
-schema = graphene.Schema(query=Query)
-result = schema.execute('{ hello }')
-print(result.data['hello']) # "Hello World"
+# schema = graphene.Schema(query=Query)
+# result = schema.execute('{ hello }')
+# print(result.data['hello']) # "Hello World"
 
 
 # importing the requests library 
@@ -53,13 +53,15 @@ print(data)
 
 
 
+# Examples running commands from python
+
 # os.system("pwd")
 # os.system("ls")
 # os.system("cd graphql-server-example")
-cmd = "node index.js"
+# cmd = "node index.js"
 
-returned_value = os.system(cmd)  # returns the exit code in unix
-print('returned value:', returned_value)
+# returned_value = os.system(cmd)  # returns the exit code in unix
+# print('returned value:', returned_value)
 
 
 
