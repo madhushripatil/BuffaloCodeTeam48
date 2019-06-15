@@ -4,3 +4,5 @@ Bored-API/
 npm-debug\.log
 
 *.log
+
+graphql-server-example/node_modules/*
