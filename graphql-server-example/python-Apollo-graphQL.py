@@ -50,7 +50,7 @@ r = requests.get(url = URL)
 data = r.json() 
 print(json.dumps(data))
 
-
+sys.argv[1:]
 
 
 # Examples running commands from python
