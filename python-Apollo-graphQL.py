@@ -29,3 +29,26 @@ class Query(graphene.ObjectType):
 schema = graphene.Schema(query=Query)
 result = schema.execute('{ hello }')
 print(result.data['hello']) # "Hello World"
+
+
+# importing the requests library 
+import requests 
+
+# api-endpoint 
+URL = "https://www.boredapi.com/api/activity"
+
+# location given here 
+activity = "activity/"
+
+# defining a params dict for the parameters to be sent to the API 
+PARAMS = {'address':activity} 
+
+# sending get request and saving the response as response object 
+r = requests.get(url = URL) 
+
+# extracting data in json format 
+data = r.json() 
+print(data)
+
+
+
