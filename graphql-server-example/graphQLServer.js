@@ -2,10 +2,34 @@ var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var { buildSchema } = require('graphql');
 
+// Construct a schema, using GraphQL schema language
+var schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
+
+// The root provides a resolver function for each API endpoint
+var root = {
+  hello: () => {
+    return 'Hello team 48!';
+  },
+};
+
+var app = express();
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,
+}));
+app.listen(4000);
+console.log('Running a GraphQL API server at localhost:4000/graphql');
+
+
 
 const { spawn } = require('child_process')
 
-const logOutput = (name) => (data) => console.log(`[${name}] ${data}`)
+const logOutput = (name) => (message) => console.log(`[${name}] ${message}`)
 
 function run() {
   return new Promise((resolve, reject) => {
@@ -32,7 +56,15 @@ function run() {
 
     process.on('exit', (code, signal) => {
       logOutput('exit')(`${code} (${signal})`)
-      resolve(out);
+      if (code !== 0) {
+        reject(new Error(err.join('\n')))
+        return
+      }
+      try {
+        resolve(JSON.parse(out[0]));
+      } catch(e) {
+        reject(e);
+      }
     });
   });
 }
@@ -40,35 +72,13 @@ function run() {
 (async () => {
   try {
     const output = await run()
-    logOutput('main')(output)
+    logOutput('main')(output.message)
     process.exit(0)
   } catch (e) {
-    console.error(e.stack);
+    console.error('Error during script execution ', e.stack);
     process.exit(1);
   }
 })();
 
 
 
-// Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
-
-// The root provides a resolver function for each API endpoint
-var root = {
-  hello: () => {
-    return 'Hello team 48!';
-  },
-};
-
-var app = express();
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
-}));
-app.listen(4000);
-console.log('Running a GraphQL API server at localhost:4000/graphql');
