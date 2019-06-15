@@ -1,5 +1,5 @@
 import graphene
-
+import os
 
 from graphene import ObjectType, String, Schema
 
@@ -49,6 +49,18 @@ r = requests.get(url = URL)
 # extracting data in json format 
 data = r.json() 
 print(data)
+
+
+
+
+# os.system("pwd")
+# os.system("ls")
+# os.system("cd graphql-server-example")
+cmd = "node index.js"
+
+returned_value = os.system(cmd)  # returns the exit code in unix
+print('returned value:', returned_value)
+
 
 
 
