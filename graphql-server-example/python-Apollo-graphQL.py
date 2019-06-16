@@ -34,23 +34,27 @@ import os, sys, json
 # importing the requests library 
 import requests 
 
-# api-endpoint 
-URL = "https://www.boredapi.com/api/activity"
 
-# location given here 
-activity = "activity/"
+if (str(sys.argv[1]) == "activity"):
+    # api-endpoint 
+    URL = "https://www.boredapi.com/api/activity"
 
-# defining a params dict for the parameters to be sent to the API 
-PARAMS = {'address':activity} 
+    # location given here 
+    activity = "activity/"
 
-# sending get request and saving the response as response object 
-r = requests.get(url = URL) 
+    # defining a params dict for the parameters to be sent to the API 
+    PARAMS = {'address':activity} 
 
-# extracting data in json format 
-data = r.json() 
-print(json.dumps(data))
+    # sending get request and saving the response as response object 
+    r = requests.get(url = URL) 
+    
+    # extracting data in json format 
+    data = r.json() 
+    print(json.dumps(data))
 
-sys.argv[1:]
+
+    
+# os.system("node graphQLServer.py")
 
 
 # Examples running commands from python

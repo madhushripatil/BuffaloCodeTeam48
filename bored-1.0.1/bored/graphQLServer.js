@@ -1,3 +1,4 @@
+
 var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var { buildSchema } = require('graphql');
@@ -9,7 +10,7 @@ const logOutput = (name) => (message) => console.log(`[${name}] ${message}`)
 
 function run() {
   return new Promise((resolve, reject) => {
-    const process = spawn('python3', ['./python-Apollo-graphQL.py', 'activity', 'args']);
+    const process = spawn('python3', ['./__init__.py', 'activity', 'args']);
 
     const out = []
     process.stdout.on(
@@ -57,7 +58,6 @@ var schema = buildSchema(`
     key:            ID!
   }
 `);
-
 
 // var schema = buildSchema(`
 //   type Query {
